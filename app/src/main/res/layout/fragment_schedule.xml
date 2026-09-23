@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_gray"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schedule"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnAddSchedule"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_add"
+            app:tint="@color/colorPrimary"
+            android:contentDescription="Add Schedule" />
+    </RelativeLayout>
+
+    <!-- Day Selector Sun-Sat -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="7"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:padding="8dp">
+
+        <LinearLayout android:id="@+id/daySun" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/day_selector_bg" android:padding="6dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Su" android:textSize="12sp" android:textColor="@color/text_gray"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="20" android:textStyle="bold" android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/dayMon" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mo" android:textSize="12sp" android:textColor="@color/text_gray"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="21" android:textStyle="bold" android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/dayTue" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tu" android:textSize="12sp" android:textColor="@color/text_gray"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="22" android:textStyle="bold" android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/dayWed" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="We" android:textSize="12sp" android:textColor="@color/text_gray"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="23" android:textStyle="bold" android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/dayThu" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Th" android:textSize="12sp" android:textColor="@color/text_gray"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="24" android:textStyle="bold" android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/dayFri" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fr" android:textSize="12sp" android:textColor="@color/text_gray"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="25" android:textStyle="bold" android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/daySat" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sa" android:textSize="12sp" android:textColor="@color/text_gray"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="26" android:textStyle="bold" android:textColor="@color/black"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/tvClassCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 Classes"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true" />
+
+        <Button
+            android:id="@+id/btnAllInstructors"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="All Instructors"
+            android:textSize="12sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/colorPrimary"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="1dp"/>
+    </RelativeLayout>
+
+    <!-- Class Card 1: Yoga -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="12dp"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Left colored border -->
+            <View
+                android:layout_width="6dp"
+                android:layout_height="match_parent"
+                android:background="#2E5FA3" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yoga Session"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="08:00 AM - 09:15 AM"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp">
+
+                <Button
+                    android:id="@+id/btnEditYoga"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    android:textSize="12sp"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="4dp"/>
+
+                <Button
+                    android:id="@+id/btnDeleteYoga"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete"
+                    android:textSize="12sp"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#F44336"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Class Card 2: Pilates -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="12dp"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Left colored border -->
+            <View
+                android:layout_width="6dp"
+                android:layout_height="match_parent"
+                android:background="#4CAF50" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pilates Beginner"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11:00 AM - 12:00 PM"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp">
+
+                <Button
+                    android:id="@+id/btnEditPilates"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    android:textSize="12sp"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="4dp"/>
+
+                <Button
+                    android:id="@+id/btnDeletePilates"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete"
+                    android:textSize="12sp"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#F44336"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

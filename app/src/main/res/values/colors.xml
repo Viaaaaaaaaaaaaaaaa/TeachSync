@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#2E5FA3</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="header_blue">#2E5FA3</color>
+    <color name="stat_card_bg">#4DFFFFFF</color>
+    <color name="feature_card_bg">#FFFFFF</color>
+    <color name="status_badge_active">#4CAF50</color>
+    <color name="status_badge_online">#2196F3</color>
+    <color name="status_badge_pending">#FFC107</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="text_gray">#757575</color>
+</resources>

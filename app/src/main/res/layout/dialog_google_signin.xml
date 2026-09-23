@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose an account"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="to continue to TeachSync"
+        android:textColor="@color/text_gray"
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/tvAccount1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="admin.user@gmail.com"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:paddingVertical="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@android:drawable/ic_menu_myplaces"
+        android:drawablePadding="16dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EEEEEE" />
+
+    <TextView
+        android:id="@+id/tvAccount2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="personal.dev@gmail.com"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:paddingVertical="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@android:drawable/ic_menu_myplaces"
+        android:drawablePadding="16dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EEEEEE" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Use another account"
+        android:textColor="@color/text_gray"
+        android:textSize="14sp"
+        android:paddingVertical="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@android:drawable/ic_input_add"
+        android:drawablePadding="16dp" />
+
+</LinearLayout>

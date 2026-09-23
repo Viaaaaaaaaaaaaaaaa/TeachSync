@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "507742984825",
+    "project_id": "teachsync-935ab",
+    "storage_bucket": "teachsync-935ab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507742984825:android:4c58b6cacf8d26359412a8",
+        "android_client_info": {
+          "package_name": "com.example.assistai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ5iTwFY3pbAyEnSHIZmH9ec25PCSsuS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
