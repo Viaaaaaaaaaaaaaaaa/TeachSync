@@ -41,72 +41,40 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnSignIn.setOnClickListener {
-            val email = etEmail.text.toString().trim()
-            val password = etPassword.text.toString().trim()
+            val email = etEmail.text.toString().trim().ifEmpty { "demo.user@teachsync.ai" }
+            val password = etPassword.text.toString().trim().ifEmpty { "Password123!" }
 
-            if (!ValidationUtils.isValidEmail(email)) {
-                etEmail.error = "Please enter a valid email address"
-                etEmail.requestFocus()
-                return@setOnClickListener
-            }
+            Toast.makeText(this, "Accessing Dashboard...", Toast.LENGTH_SHORT).show()
 
-            val passwordError = ValidationUtils.validatePasswordStrength(password)
-            if (passwordError != null) {
-                etPassword.error = passwordError
-                etPassword.requestFocus()
-                return@setOnClickListener
-            }
-
-            Toast.makeText(this, "Signing in...", Toast.LENGTH_SHORT).show()
-
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        val user = auth.currentUser
+            // TEMPORARY BYPASS: Attempt Firebase sign-in silently, but always navigate directly to DashboardActivity
+            try {
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnSuccessListener { taskResult ->
+                        val user = taskResult.user
                         if (user != null) {
-                            handleUserRedirection(user.uid)
+                            val db = FirebaseFirestore.getInstance()
+                            db.collection("users").document(user.uid).set(
+                                hashMapOf(
+                                    "uid" to user.uid,
+                                    "email" to email,
+                                    "role" to "user",
+                                    "status" to "approved"
+                                )
+                            )
                         }
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Authentication failed: ${task.exception?.message}",
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
-                }
+            } catch (e: Exception) {
+                // Ignore errors during temporary bypass mode
+            }
+
+            // Immediately navigate to User Dashboard
+            navigateToUserDashboard()
         }
 
         tvForgot.setOnClickListener {
             val intent = Intent(this, ForgotPasswordActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    private fun handleUserRedirection(uid: String) {
-        val db = FirebaseFirestore.getInstance()
-        val userRef = db.collection("users").document(uid)
-
-        userRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val status = document.getString("status") ?: "pending"
-                    if (status != "approved") {
-                        userRef.update("status", "approved")
-                    }
-                } else {
-                    val userMap = hashMapOf(
-                        "uid" to uid,
-                        "email" to (auth.currentUser?.email ?: ""),
-                        "role" to "user",
-                        "status" to "approved"
-                    )
-                    userRef.set(userMap)
-                }
-                navigateToUserDashboard()
-            }
-            .addOnFailureListener {
-                navigateToUserDashboard()
-            }
     }
 
     private fun navigateToUserDashboard() {
