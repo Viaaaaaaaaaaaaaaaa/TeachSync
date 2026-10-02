@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class ScheduleFragment : Fragment() {
 
@@ -76,14 +74,6 @@ class ScheduleFragment : Fragment() {
                 animateButtonClick(dayView) {
                     selectDay(index, dayNames[index])
                 }
-            }
-        }
-
-        // Add New Booking Slot Button
-        val btnAddSchedule = view.findViewById<View>(R.id.btnAddSchedule)
-        btnAddSchedule.setOnClickListener {
-            animateButtonClick(it) {
-                showAddBookingDialog()
             }
         }
 
@@ -162,27 +152,6 @@ class ScheduleFragment : Fragment() {
         tvBookingCount.text = bookingCounts[index % bookingCounts.size]
 
         Toast.makeText(requireContext(), "Showing schedule for $dayName", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun showAddBookingDialog() {
-        val bottomSheet = BottomSheetDialog(requireContext())
-        val dialogView = layoutInflater.inflate(R.layout.dialog_add_booking, null)
-        bottomSheet.setContentView(dialogView)
-
-        val etStudentName = dialogView.findViewById<EditText>(R.id.etAddStudentName)
-        val btnSave = dialogView.findViewById<Button>(R.id.btnSaveBookingSlot)
-
-        btnSave?.setOnClickListener {
-            val studentName = etStudentName?.text?.toString()?.trim() ?: ""
-            if (studentName.isNotEmpty()) {
-                Toast.makeText(requireContext(), "Booking Slot created for $studentName!", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "New Student Booking Slot created!", Toast.LENGTH_SHORT).show()
-            }
-            bottomSheet.dismiss()
-        }
-
-        bottomSheet.show()
     }
 
     private fun animateButtonClick(view: View, onAnimationEnd: () -> Unit) {

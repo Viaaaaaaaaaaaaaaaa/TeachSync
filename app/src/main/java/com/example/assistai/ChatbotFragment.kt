@@ -34,7 +34,6 @@ class ChatbotFragment : Fragment() {
         etMessage = view.findViewById(R.id.etMessage)
 
         val btnSend = view.findViewById<View>(R.id.btnSendMessage)
-        val btnWeb = view.findViewById<View>(R.id.btnWeb)
 
         val chipClasses = view.findViewById<View>(R.id.chipClasses)
         val chipBooking = view.findViewById<View>(R.id.chipBooking)
@@ -51,17 +50,7 @@ class ChatbotFragment : Fragment() {
             }
         }
 
-        btnWeb.setOnClickListener {
-            animateButtonClick(it) {
-                val userQuery = etMessage.text.toString().trim()
-                if (userQuery.isNotEmpty()) {
-                    sendMessageAndProcess(userQuery)
-                } else {
-                    etMessage.setText("Search web: Latest AI in education")
-                    sendMessageAndProcess("Search web: Latest AI in education")
-                }
-            }
-        }
+
 
         chipClasses.setOnClickListener {
             animateButtonClick(it) {
