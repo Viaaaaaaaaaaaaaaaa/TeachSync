@@ -3,10 +3,9 @@ package com.example.assistai
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,25 +22,22 @@ class MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnSignIn = findViewById<Button>(R.id.btnSignIn)
         val tvForgot = findViewById<TextView>(R.id.tvForgot)
         val tvFooter = findViewById<TextView>(R.id.tvFooter)
-        
-        // Add a progress bar programmatically or dynamically if needed, or just use Toast for status feedback.
-        // Let's check if there's a progress bar in layout or use Toast for feedback.
 
-        tvFooter.text = Html.fromHtml("Don't have an account? <font color='#2E5FA3'><b>Sign Up</b></font>")
+        btnBack.setOnClickListener {
+            finish()
+        }
+
+        tvFooter.text = Html.fromHtml("Don't have an account? <font color='#3B82F6'><b>Sign up</b></font>")
         tvFooter.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-        }
-
-        // Check if user is already logged in
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            handleUserRedirection(currentUser.uid)
+            finish()
         }
 
         btnSignIn.setOnClickListener {

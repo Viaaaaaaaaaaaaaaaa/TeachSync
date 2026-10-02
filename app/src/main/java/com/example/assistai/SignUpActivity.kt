@@ -2,8 +2,10 @@ package com.example.assistai
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +22,7 @@ class SignUpActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
         val etFullName = findViewById<EditText>(R.id.etFullName)
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
@@ -27,6 +30,17 @@ class SignUpActivity : AppCompatActivity() {
         val cbTerms = findViewById<android.widget.CheckBox>(R.id.cbTerms)
         val btnSignUp = findViewById<Button>(R.id.btnSignUp)
         val tvFooter = findViewById<TextView>(R.id.tvFooter)
+
+        btnBack.setOnClickListener {
+            finish()
+        }
+
+        tvFooter.text = Html.fromHtml("Already have an account? <font color='#3B82F6'><b>Sign in</b></font>")
+        tvFooter.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         btnSignUp.setOnClickListener {
             val name = etFullName.text.toString().trim()
@@ -37,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
 
             when {
                 name.isEmpty() -> {
-                    etFullName.error = "Please enter your full name"
+                    etFullName.error = "Please enter your username"
                     etFullName.requestFocus()
                 }
                 !ValidationUtils.isValidEmail(email) -> {
@@ -51,9 +65,6 @@ class SignUpActivity : AppCompatActivity() {
                 confirmPassword != password -> {
                     etConfirmPassword.error = "Passwords do not match"
                     etConfirmPassword.requestFocus()
-                }
-                !isTermsChecked -> {
-                    Toast.makeText(this, "Please agree to the Privacy Policy and Terms of Service", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                     Toast.makeText(this, "Creating account...", Toast.LENGTH_SHORT).show()
@@ -96,10 +107,6 @@ class SignUpActivity : AppCompatActivity() {
                         }
                 }
             }
-        }
-
-        tvFooter.setOnClickListener {
-            finish()
         }
     }
 }
