@@ -13,7 +13,6 @@ class DashboardActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
-        // Load default fragment
         if (savedInstanceState == null) {
             loadFragment(HomeFragment())
         }
@@ -24,6 +23,7 @@ class DashboardActivity : AppCompatActivity() {
                 R.id.nav_schedule -> ScheduleFragment()
                 R.id.nav_chatbot -> ChatbotFragment()
                 R.id.nav_alerts -> NotificationsFragment()
+                R.id.nav_profile -> ProfileFragment()
                 else -> HomeFragment()
             }
             loadFragment(fragment)
@@ -38,6 +38,10 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                android.R.anim.fade_in,
+                android.R.anim.fade_out
+            )
             .replace(R.id.fragmentContainer, fragment)
             .commit()
     }

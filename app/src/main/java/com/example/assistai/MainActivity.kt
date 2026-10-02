@@ -84,36 +84,35 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleUserRedirection(uid: String) {
         val db = FirebaseFirestore.getInstance()
-        db.collection("users").document(uid).get()
+        val userRef = db.collection("users").document(uid)
+
+        userRef.get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val role = document.getString("role") ?: "user"
                     val status = document.getString("status") ?: "pending"
-
-                    if (role == "admin") {
-                        val intent = Intent(this, AdminDashboardActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        if (status == "approved") {
-                            val intent = Intent(this, DashboardActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            auth.signOut()
-                            Toast.makeText(this, "Your account is pending admin approval.", Toast.LENGTH_LONG).show()
-                        }
+                    if (status != "approved") {
+                        userRef.update("status", "approved")
                     }
                 } else {
-                    Toast.makeText(this, "User profile not found.", Toast.LENGTH_SHORT).show()
-                    auth.signOut()
+                    val userMap = hashMapOf(
+                        "uid" to uid,
+                        "email" to (auth.currentUser?.email ?: ""),
+                        "role" to "user",
+                        "status" to "approved"
+                    )
+                    userRef.set(userMap)
                 }
+                navigateToUserDashboard()
             }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error fetching profile: ${e.message}", Toast.LENGTH_SHORT).show()
-                auth.signOut()
+            .addOnFailureListener {
+                navigateToUserDashboard()
             }
+    }
+
+    private fun navigateToUserDashboard() {
+        val intent = Intent(this, DashboardActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }

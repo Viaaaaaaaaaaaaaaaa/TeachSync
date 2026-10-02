@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SignUpActivity : AppCompatActivity() {
@@ -27,7 +28,6 @@ class SignUpActivity : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
-        val cbTerms = findViewById<android.widget.CheckBox>(R.id.cbTerms)
         val btnSignUp = findViewById<Button>(R.id.btnSignUp)
         val tvFooter = findViewById<TextView>(R.id.tvFooter)
 
@@ -47,7 +47,6 @@ class SignUpActivity : AppCompatActivity() {
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
             val confirmPassword = etConfirmPassword.text.toString().trim()
-            val isTermsChecked = cbTerms.isChecked
 
             when {
                 name.isEmpty() -> {
@@ -67,46 +66,63 @@ class SignUpActivity : AppCompatActivity() {
                     etConfirmPassword.requestFocus()
                 }
                 else -> {
-                    Toast.makeText(this, "Creating account...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Processing registration...", Toast.LENGTH_SHORT).show()
 
                     auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
                                 val uid = auth.currentUser?.uid ?: ""
-                                val role = if (email.lowercase().contains("admin")) "admin" else "user"
-                                val status = if (role == "admin") "approved" else "pending"
-
-                                val userMap = hashMapOf(
-                                    "uid" to uid,
-                                    "name" to name,
-                                    "email" to email,
-                                    "role" to role,
-                                    "status" to status
-                                )
-
-                                FirebaseFirestore.getInstance().collection("users").document(uid)
-                                    .set(userMap)
-                                    .addOnSuccessListener {
-                                        if (role == "admin") {
-                                            Toast.makeText(this, "Admin Account Registered Successfully!", Toast.LENGTH_LONG).show()
-                                        } else {
-                                            Toast.makeText(this, "Registration successful! Pending admin approval.", Toast.LENGTH_LONG).show()
-                                        }
-                                        auth.signOut()
-                                        val intent = Intent(this, MainActivity::class.java)
-                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                        startActivity(intent)
-                                        finish()
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Toast.makeText(this, "Profile creation failed: ${e.message}", Toast.LENGTH_SHORT).show()
-                                    }
+                                saveProfileAndNavigate(uid, name, email)
                             } else {
-                                Toast.makeText(this, "Sign up failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                                val exception = task.exception
+                                if (exception is FirebaseAuthUserCollisionException ||
+                                    exception?.message?.contains("already in use", ignoreCase = true) == true
+                                ) {
+                                    // Email already in use: automatically sign in with provided credentials
+                                    Toast.makeText(this, "Email already exists. Logging in...", Toast.LENGTH_SHORT).show()
+                                    auth.signInWithEmailAndPassword(email, password)
+                                        .addOnCompleteListener(this) { signInTask ->
+                                            if (signInTask.isSuccessful) {
+                                                val uid = auth.currentUser?.uid ?: ""
+                                                saveProfileAndNavigate(uid, name, email)
+                                            } else {
+                                                Toast.makeText(
+                                                    this,
+                                                    "Account already exists. Please sign in on the login screen.",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
+                                                val intent = Intent(this, MainActivity::class.java)
+                                                startActivity(intent)
+                                                finish()
+                                            }
+                                        }
+                                } else {
+                                    Toast.makeText(this, "Sign up failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                                }
                             }
                         }
                 }
             }
         }
+    }
+
+    private fun saveProfileAndNavigate(uid: String, name: String, email: String) {
+        val userMap = hashMapOf(
+            "uid" to uid,
+            "name" to name.ifEmpty { "User" },
+            "email" to email,
+            "role" to "user",
+            "status" to "approved"
+        )
+
+        FirebaseFirestore.getInstance().collection("users").document(uid)
+            .set(userMap)
+            .addOnCompleteListener {
+                Toast.makeText(this, "Welcome to TeachSync!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, DashboardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+            }
     }
 }
