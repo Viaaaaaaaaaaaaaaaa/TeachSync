@@ -7,11 +7,19 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
+
+        // Clear any existing Firebase session so user can start fresh
+        try {
+            FirebaseAuth.getInstance().signOut()
+        } catch (e: Exception) {
+            // Ignore if Firebase not initialized yet
+        }
 
         val layoutLogo = findViewById<View>(R.id.layoutLogo)
         val layoutTitles = findViewById<View>(R.id.layoutTitles)
