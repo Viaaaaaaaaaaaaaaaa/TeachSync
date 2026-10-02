@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#D1D5DB" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Schedule New Student Booking"
+        android:textColor="@color/text_dark"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Set time slot and topic for student consultation"
+        android:textColor="@color/text_gray"
+        android:textSize="13sp" />
+
+    <!-- Student Name Field -->
+    <EditText
+        android:id="@+id/etAddStudentName"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_dark_input"
+        android:backgroundTint="#F3F4F6"
+        android:hint="Student Name (e.g., Emily Davis)"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/text_dark"
+        android:textColorHint="@color/text_gray"
+        android:textSize="14sp" />
+
+    <!-- Topic / Course Field -->
+    <EditText
+        android:id="@+id/etAddTopic"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_dark_input"
+        android:backgroundTint="#F3F4F6"
+        android:hint="Topic / Subject (e.g., Physics Lab Consultation)"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/text_dark"
+        android:textColorHint="@color/text_gray"
+        android:textSize="14sp" />
+
+    <!-- Time Slot Field -->
+    <EditText
+        android:id="@+id/etAddTimeSlot"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_dark_input"
+        android:backgroundTint="#F3F4F6"
+        android:hint="Time &amp; Location (e.g., 03:30 PM - 04:30 PM | Room 204)"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/text_dark"
+        android:textColorHint="@color/text_gray"
+        android:textSize="14sp" />
+
+    <!-- Save Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSaveBookingSlot"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_blue_button"
+        android:backgroundTint="@color/mint_green"
+        android:text="Create Booking Slot"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

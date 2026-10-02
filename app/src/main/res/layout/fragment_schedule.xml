@@ -1,259 +1,701 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/light_gray"
-    android:padding="16dp">
+    android:background="@color/bg_dark_green">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Schedule"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/btnAddSchedule"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_add"
-            app:tint="@color/colorPrimary"
-            android:contentDescription="Add Schedule" />
-    </RelativeLayout>
-
-    <!-- Day Selector Sun-Sat -->
+    <!-- Top Mint Header Bar -->
     <LinearLayout
+        android:id="@+id/scheduleHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_mint_header"
+        android:elevation="6dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:weightSum="7"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
-        android:padding="8dp">
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="14dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout android:id="@+id/daySun" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/day_selector_bg" android:padding="6dp" android:clickable="true" android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Su" android:textSize="12sp" android:textColor="@color/text_gray"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="20" android:textStyle="bold" android:textColor="@color/black"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teacher Booking Schedule"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student Consultations &amp; Appointments"
+                android:textColor="#E0F2FE"
+                android:textSize="12sp" />
         </LinearLayout>
-        <LinearLayout android:id="@+id/dayMon" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mo" android:textSize="12sp" android:textColor="@color/text_gray"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="21" android:textStyle="bold" android:textColor="@color/black"/>
-        </LinearLayout>
-        <LinearLayout android:id="@+id/dayTue" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tu" android:textSize="12sp" android:textColor="@color/text_gray"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="22" android:textStyle="bold" android:textColor="@color/black"/>
-        </LinearLayout>
-        <LinearLayout android:id="@+id/dayWed" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="We" android:textSize="12sp" android:textColor="@color/text_gray"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="23" android:textStyle="bold" android:textColor="@color/black"/>
-        </LinearLayout>
-        <LinearLayout android:id="@+id/dayThu" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Th" android:textSize="12sp" android:textColor="@color/text_gray"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="24" android:textStyle="bold" android:textColor="@color/black"/>
-        </LinearLayout>
-        <LinearLayout android:id="@+id/dayFri" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fr" android:textSize="12sp" android:textColor="@color/text_gray"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="25" android:textStyle="bold" android:textColor="@color/black"/>
-        </LinearLayout>
-        <LinearLayout android:id="@+id/daySat" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:clickable="true" android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sa" android:textSize="12sp" android:textColor="@color/text_gray"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="26" android:textStyle="bold" android:textColor="@color/black"/>
-        </LinearLayout>
+
+        <!-- Add Booking Button -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnAddSchedule"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="4dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_input_add"
+                app:tint="@color/mint_green" />
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 
-    <RelativeLayout
+    <!-- Day Selector Section (Sun - Sat) -->
+    <LinearLayout
+        android:id="@+id/daySelectorContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp">
-
-        <TextView
-            android:id="@+id/tvClassCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2 Classes"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true" />
-
-        <Button
-            android:id="@+id/btnAllInstructors"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="All Instructors"
-            android:textSize="12sp"
-            android:textAllCaps="false"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/colorPrimary"
-            app:strokeColor="@color/colorPrimary"
-            app:strokeWidth="1dp"/>
-    </RelativeLayout>
-
-    <!-- Class Card 1: Yoga -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
         android:layout_marginTop="12dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="12dp"
-        app:strokeWidth="0dp">
+        android:orientation="horizontal"
+        android:weightSum="7"
+        app:layout_constraintTop_toBottomOf="@id/scheduleHeader">
+
+        <!-- Sunday -->
+        <LinearLayout
+            android:id="@+id/daySun"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_selector_inactive"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSunLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SU"
+                android:textColor="#9CA3AF"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvSunDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Monday (Default Selected) -->
+        <LinearLayout
+            android:id="@+id/dayMon"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_selector_active"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvMonLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MO"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMonDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Tuesday -->
+        <LinearLayout
+            android:id="@+id/dayTue"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_selector_inactive"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTueLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TU"
+                android:textColor="#9CA3AF"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvTueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Wednesday -->
+        <LinearLayout
+            android:id="@+id/dayWed"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_selector_inactive"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvWedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WE"
+                android:textColor="#9CA3AF"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvWedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Thursday -->
+        <LinearLayout
+            android:id="@+id/dayThu"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_selector_inactive"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvThuLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TH"
+                android:textColor="#9CA3AF"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvThuDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Friday -->
+        <LinearLayout
+            android:id="@+id/dayFri"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_selector_inactive"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFriLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FR"
+                android:textColor="#9CA3AF"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvFriDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Saturday -->
+        <LinearLayout
+            android:id="@+id/daySat"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/day_selector_inactive"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSatLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SA"
+                android:textColor="#9CA3AF"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvSatDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="26"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Scrollable Booking Cards -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/daySelectorContainer">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <!-- Left colored border -->
-            <View
-                android:layout_width="6dp"
-                android:layout_height="match_parent"
-                android:background="#2E5FA3" />
-
+            <!-- Day Header Summary -->
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="4dp"
+                android:paddingBottom="10dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvDayHeader"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Yoga Session"
-                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:text="Monday, Oct 21 Bookings"
+                    android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvBookingCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="08:00 AM - 09:15 AM"
-                    android:textColor="@color/text_gray"
-                    android:textSize="13sp"
-                    android:layout_marginTop="4dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingEnd="16dp">
-
-                <Button
-                    android:id="@+id/btnEditYoga"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit"
+                    android:text="3 Student Bookings"
+                    android:textColor="#26E39F"
                     android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:backgroundTint="#2196F3"
-                    android:textColor="@color/white"
-                    android:layout_marginEnd="4dp"/>
-
-                <Button
-                    android:id="@+id/btnDeleteYoga"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Delete"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:backgroundTint="#F44336"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Class Card 2: Pilates -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="12dp"
-        app:strokeWidth="0dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!-- Left colored border -->
-            <View
-                android:layout_width="6dp"
-                android:layout_height="match_parent"
-                android:background="#4CAF50" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pilates Beginner"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="11:00 AM - 12:00 PM"
-                    android:textColor="@color/text_gray"
-                    android:textSize="13sp"
-                    android:layout_marginTop="4dp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingEnd="16dp">
+            <!-- Student Booking Card 1 -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardBooking1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:strokeColor="#0B2317"
+                app:strokeWidth="1dp">
 
-                <Button
-                    android:id="@+id/btnEditPilates"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Edit"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:backgroundTint="#2196F3"
-                    android:textColor="@color/white"
-                    android:layout_marginEnd="4dp"/>
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                <Button
-                    android:id="@+id/btnDeletePilates"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvStudent1Name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Alex Johnson (Student #102)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvBadge1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_green"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="3dp"
+                            android:text="CONFIRMED"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvStudent1Topic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Topic: Calculus I - Integral Equations Consultation"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_schedule"
+                            app:tint="@color/mint_green" />
+
+                        <TextView
+                            android:id="@+id/tvStudent1Time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="09:00 AM - 10:00 AM | Room 301 (Faculty Hall)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Action Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnReschedule1"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_top_pill"
+                            android:text="Reschedule"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnCancel1"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_blue_button"
+                            android:backgroundTint="#EF4444"
+                            android:text="Cancel Booking"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Student Booking Card 2 -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardBooking2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:strokeColor="#0B2317"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Delete"
-                    android:textSize="12sp"
-                    android:textAllCaps="false"
-                    android:backgroundTint="#F44336"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvStudent2Name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Sarah Jenkins (Student #204)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvBadge2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_cyan"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="3dp"
+                            android:text="UPCOMING"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvStudent2Topic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Topic: Chemistry Thesis Project Guidance"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_schedule"
+                            app:tint="@color/mint_green" />
+
+                        <TextView
+                            android:id="@+id/tvStudent2Time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="10:30 AM - 11:30 AM | Online Google Meet"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Action Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnReschedule2"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_top_pill"
+                            android:text="Reschedule"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnCancel2"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_blue_button"
+                            android:backgroundTint="#EF4444"
+                            android:text="Cancel Booking"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Student Booking Card 3 -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardBooking3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:strokeColor="#0B2317"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvStudent3Name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Michael Brown (Student #305)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvBadge3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_stat_card"
+                            android:backgroundTint="#F59E0B"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="3dp"
+                            android:text="PENDING REVIEW"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvStudent3Topic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Topic: Programming - Android Studio Project Support"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_schedule"
+                            app:tint="@color/mint_green" />
+
+                        <TextView
+                            android:id="@+id/tvStudent3Time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="02:00 PM - 03:00 PM | Computer Lab B"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Action Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnApproveBooking3"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_badge_green"
+                            android:text="Approve Booking"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnDeclineBooking3"
+                            android:layout_width="0dp"
+                            android:layout_height="38dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_blue_button"
+                            android:backgroundTint="#EF4444"
+                            android:text="Decline"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
