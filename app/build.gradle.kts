@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+    implementation("com.airbnb.android:lottie:6.3.0")
     
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)
