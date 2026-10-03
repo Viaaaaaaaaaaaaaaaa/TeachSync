@@ -6,131 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/bg_dark_green">
 
-    <!-- Top Mint Header Bar -->
-    <LinearLayout
-        android:id="@+id/headerContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/bg_mint_header"
-        android:elevation="6dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="14dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!-- Pill 1: CLASSES TODAY -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/btnClassesToday"
-            android:layout_width="0dp"
-            android:layout_height="72dp"
-            android:layout_marginHorizontal="4dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="#26E39F"
-            app:cardCornerRadius="22dp"
-            app:cardElevation="6dp"
-            app:strokeColor="#128358"
-            app:strokeWidth="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="6dp">
-
-                <TextView
-                    android:id="@+id/tvClassesTodayCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="CLASSES\nTODAY"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:lineSpacingMultiplier="0.9" />
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Pill 2: PENDING BOOKINGS -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/btnPendingBookings"
-            android:layout_width="0dp"
-            android:layout_height="72dp"
-            android:layout_marginHorizontal="4dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="#26E39F"
-            app:cardCornerRadius="22dp"
-            app:cardElevation="6dp"
-            app:strokeColor="#128358"
-            app:strokeWidth="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="6dp">
-
-                <TextView
-                    android:id="@+id/tvPendingBookingsCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="PENDING\nBOOKINGS"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:lineSpacingMultiplier="0.9" />
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Pill 3: AI RESPONSES -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/btnAiResponses"
-            android:layout_width="0dp"
-            android:layout_height="72dp"
-            android:layout_marginHorizontal="4dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="#26E39F"
-            app:cardCornerRadius="22dp"
-            app:cardElevation="6dp"
-            app:strokeColor="#128358"
-            app:strokeWidth="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="6dp">
-
-                <TextView
-                    android:id="@+id/tvAiResponsesCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="AI\nRESPONSES"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:lineSpacingMultiplier="0.9" />
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-
     <!-- Scrollable Main Content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -138,7 +13,7 @@
         android:clipToPadding="false"
         android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerContainer">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
