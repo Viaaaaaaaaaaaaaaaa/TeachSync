@@ -78,6 +78,13 @@ class ChatbotFragment : Fragment() {
         etMessage.text.clear()
         scrollToBottom()
 
+        // Save to shared prefs for real-time notifications sync
+        val sharedPrefs = requireContext().getSharedPreferences("TeachSyncPrefs", android.content.Context.MODE_PRIVATE)
+        sharedPrefs.edit()
+            .putString("last_ai_query", query)
+            .putLong("last_ai_time", System.currentTimeMillis())
+            .apply()
+
         // Show loading indicator bubble
         val loadingBubble = addAiLoadingBubble()
         scrollToBottom()
