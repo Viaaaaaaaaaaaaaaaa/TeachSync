@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -77,63 +76,6 @@ class ScheduleFragment : Fragment() {
             }
         }
 
-        // Action Buttons for Card 1
-        val btnReschedule1 = view.findViewById<Button>(R.id.btnReschedule1)
-        val btnCancel1 = view.findViewById<Button>(R.id.btnCancel1)
-        val cardBooking1 = view.findViewById<View>(R.id.cardBooking1)
-
-        btnReschedule1?.setOnClickListener {
-            animateButtonClick(it) {
-                Toast.makeText(requireContext(), "Reschedule requested for Alex Johnson", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        btnCancel1?.setOnClickListener {
-            animateButtonClick(it) {
-                cardBooking1?.visibility = View.GONE
-                Toast.makeText(requireContext(), "Booking with Alex Johnson cancelled", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        // Action Buttons for Card 2
-        val btnReschedule2 = view.findViewById<Button>(R.id.btnReschedule2)
-        val btnCancel2 = view.findViewById<Button>(R.id.btnCancel2)
-        val cardBooking2 = view.findViewById<View>(R.id.cardBooking2)
-
-        btnReschedule2?.setOnClickListener {
-            animateButtonClick(it) {
-                Toast.makeText(requireContext(), "Reschedule requested for Sarah Jenkins", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        btnCancel2?.setOnClickListener {
-            animateButtonClick(it) {
-                cardBooking2?.visibility = View.GONE
-                Toast.makeText(requireContext(), "Booking with Sarah Jenkins cancelled", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        // Action Buttons for Card 3
-        val btnApproveBooking3 = view.findViewById<Button>(R.id.btnApproveBooking3)
-        val btnDeclineBooking3 = view.findViewById<Button>(R.id.btnDeclineBooking3)
-        val tvBadge3 = view.findViewById<TextView>(R.id.tvBadge3)
-        val cardBooking3 = view.findViewById<View>(R.id.cardBooking3)
-
-        btnApproveBooking3?.setOnClickListener {
-            animateButtonClick(it) {
-                tvBadge3?.text = "CONFIRMED"
-                tvBadge3?.setBackgroundResource(R.drawable.bg_badge_green)
-                Toast.makeText(requireContext(), "Booking for Michael Brown approved!", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        btnDeclineBooking3?.setOnClickListener {
-            animateButtonClick(it) {
-                cardBooking3?.visibility = View.GONE
-                Toast.makeText(requireContext(), "Booking for Michael Brown declined", Toast.LENGTH_SHORT).show()
-            }
-        }
-
         return view
     }
 
@@ -148,7 +90,7 @@ class ScheduleFragment : Fragment() {
         dayLabels[index].setTextColor(android.graphics.Color.WHITE)
 
         tvDayHeader.text = "$dayName Bookings"
-        val bookingCounts = listOf("1 Student Booking", "3 Student Bookings", "2 Student Bookings", "4 Student Bookings", "2 Student Bookings", "3 Student Bookings", "1 Student Booking")
+        val bookingCounts = listOf("1 Real-Time Booking", "3 Real-Time Bookings", "2 Real-Time Bookings", "4 Real-Time Bookings", "2 Real-Time Bookings", "3 Real-Time Bookings", "1 Real-Time Booking")
         tvBookingCount.text = bookingCounts[index % bookingCounts.size]
 
         Toast.makeText(requireContext(), "Showing schedule for $dayName", Toast.LENGTH_SHORT).show()

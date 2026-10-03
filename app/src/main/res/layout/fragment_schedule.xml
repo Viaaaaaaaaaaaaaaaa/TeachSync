@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Student Consultations &amp; Appointments"
+                android:text="Real-Time Student Bookings &amp; Consultations"
                 android:textColor="#E0F2FE"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -314,7 +314,7 @@
                     android:id="@+id/tvBookingCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3 Student Bookings"
+                    android:text="3 Real-Time Student Bookings"
                     android:textColor="#26E39F"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -398,40 +398,6 @@
                             android:textColor="@color/text_dark"
                             android:textSize="12sp"
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <!-- Action Buttons -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnReschedule1"
-                            android:layout_width="0dp"
-                            android:layout_height="38dp"
-                            android:layout_marginEnd="6dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_top_pill"
-                            android:text="Reschedule"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnCancel1"
-                            android:layout_width="0dp"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="6dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_blue_button"
-                            android:backgroundTint="#EF4444"
-                            android:text="Cancel Booking"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -518,40 +484,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    <!-- Action Buttons -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnReschedule2"
-                            android:layout_width="0dp"
-                            android:layout_height="38dp"
-                            android:layout_marginEnd="6dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_top_pill"
-                            android:text="Reschedule"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnCancel2"
-                            android:layout_width="0dp"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="6dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_blue_button"
-                            android:backgroundTint="#EF4444"
-                            android:text="Cancel Booking"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -635,40 +567,6 @@
                             android:textColor="@color/text_dark"
                             android:textSize="12sp"
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <!-- Action Buttons -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnApproveBooking3"
-                            android:layout_width="0dp"
-                            android:layout_height="38dp"
-                            android:layout_marginEnd="6dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_badge_green"
-                            android:text="Approve Booking"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnDeclineBooking3"
-                            android:layout_width="0dp"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="6dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_blue_button"
-                            android:backgroundTint="#EF4444"
-                            android:text="Decline"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
                     </LinearLayout>
 
                 </LinearLayout>
