@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:gravity="center_horizontal">
 
     <!-- Header Title -->
     <TextView
@@ -15,7 +16,24 @@
         android:textColor="@color/text_dark"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_gravity="start"
         android:layout_marginBottom="16dp" />
+
+    <!-- Avatar Preview -->
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_circle_icon">
+
+        <ImageView
+            android:id="@+id/imgEditAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_profile"
+            android:contentDescription="Profile Photo Preview" />
+    </FrameLayout>
 
     <!-- Photo Management Button (Vercel Cloud) -->
     <com.google.android.material.card.MaterialCardView
@@ -39,13 +57,14 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_profile"
-                app:tint="@color/white" />
+                app:tint="@color/white"
+                android:contentDescription="Upload Icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Upload / Manage Photo via Vercel"
+                android:text="Add / Change Photo from Gallery"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -59,7 +78,8 @@
         android:text="Full Name"
         android:textColor="@color/text_dark"
         android:textSize="13sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_gravity="start" />
 
     <EditText
         android:id="@+id/etEditName"
@@ -69,6 +89,7 @@
         android:layout_marginBottom="12dp"
         android:background="@drawable/bg_input"
         android:hint="Enter name"
+        android:autofillHints="name"
         android:inputType="textPersonName"
         android:paddingHorizontal="12dp"
         android:textColor="@color/text_dark"
@@ -81,7 +102,8 @@
         android:text="Age"
         android:textColor="@color/text_dark"
         android:textSize="13sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_gravity="start" />
 
     <EditText
         android:id="@+id/etEditAge"
@@ -91,6 +113,7 @@
         android:layout_marginBottom="12dp"
         android:background="@drawable/bg_input"
         android:hint="Enter age"
+        android:autofillHints="age"
         android:inputType="number"
         android:paddingHorizontal="12dp"
         android:textColor="@color/text_dark"
@@ -103,7 +126,8 @@
         android:text="Gender"
         android:textColor="@color/text_dark"
         android:textSize="13sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_gravity="start" />
 
     <RadioGroup
         android:id="@+id/rgGender"
@@ -111,7 +135,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="12dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="start">
 
         <RadioButton
             android:id="@+id/rbMale"
@@ -136,7 +161,8 @@
         android:text="Job / Occupation"
         android:textColor="@color/text_dark"
         android:textSize="13sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_gravity="start" />
 
     <EditText
         android:id="@+id/etEditJob"
@@ -146,6 +172,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/bg_input"
         android:hint="e.g., Professor / Mathematics Teacher"
+        android:autofillHints="jobTitle"
         android:inputType="text"
         android:paddingHorizontal="12dp"
         android:textColor="@color/text_dark"

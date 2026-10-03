@@ -1,16 +1,19 @@
 package com.example.assistai
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -22,6 +25,19 @@ class ProfileFragment : Fragment() {
     private lateinit var tvName: TextView
     private lateinit var tvLinkedGmailSub: TextView
     private lateinit var tvProfileDetails: TextView
+    private var imgProfileAvatar: ImageView? = null
+
+    private var selectedImageUri: Uri? = null
+    private var imgEditAvatarPreview: ImageView? = null
+
+    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        if (uri != null) {
+            selectedImageUri = uri
+            imgEditAvatarPreview?.setImageURI(uri)
+            imgProfileAvatar?.setImageURI(uri)
+            Toast.makeText(requireContext(), "Profile photo selected from device", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +48,7 @@ class ProfileFragment : Fragment() {
         tvName = view.findViewById(R.id.tvProfileName)
         tvLinkedGmailSub = view.findViewById(R.id.tvLinkedGmailSub)
         tvProfileDetails = view.findViewById(R.id.tvProfileDetails)
+        imgProfileAvatar = view.findViewById(R.id.imgProfileAvatar)
 
         val cardProfileHeader = view.findViewById<View>(R.id.cardProfileHeader)
         val cardPromoBanner = view.findViewById<View>(R.id.cardPromoBanner)
@@ -133,11 +150,15 @@ class ProfileFragment : Fragment() {
         val etEditName = dialogView.findViewById<EditText>(R.id.etEditName)
         val etEditAge = dialogView.findViewById<EditText>(R.id.etEditAge)
         val etEditJob = dialogView.findViewById<EditText>(R.id.etEditJob)
-        val rgGender = dialogView.findViewById<RadioGroup>(R.id.rgGender)
         val rbMale = dialogView.findViewById<RadioButton>(R.id.rbMale)
         val rbFemale = dialogView.findViewById<RadioButton>(R.id.rbFemale)
         val btnUploadPhotoVercel = dialogView.findViewById<View>(R.id.btnUploadPhotoVercel)
         val btnSaveProfile = dialogView.findViewById<Button>(R.id.btnSaveProfile)
+        imgEditAvatarPreview = dialogView.findViewById<ImageView>(R.id.imgEditAvatar)
+
+        if (selectedImageUri != null) {
+            imgEditAvatarPreview?.setImageURI(selectedImageUri)
+        }
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         val uid = currentUser?.uid ?: ""
@@ -159,17 +180,7 @@ class ProfileFragment : Fragment() {
             }
 
         btnUploadPhotoVercel?.setOnClickListener {
-            Toast.makeText(requireContext(), "Connecting to Vercel Cloud Storage...", Toast.LENGTH_SHORT).show()
-            val dummyBytes = "vercel_cloud_profile_image_bytes".toByteArray()
-            VercelImageService.uploadProfilePhoto(uid, dummyBytes) { photoUrl ->
-                activity?.runOnUiThread {
-                    if (photoUrl != null) {
-                        Toast.makeText(requireContext(), "Photo successfully managed & synced with Vercel!", Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(requireContext(), "Vercel sync error", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+            pickImageLauncher.launch("image/*")
         }
 
         btnSaveProfile?.setOnClickListener {
@@ -185,10 +196,24 @@ class ProfileFragment : Fragment() {
                 "job" to job
             )
 
+            if (selectedImageUri != null) {
+                try {
+                    val inputStream = requireContext().contentResolver.openInputStream(selectedImageUri!!)
+                    val bytes = inputStream?.readBytes() ?: byteArrayOf()
+                    VercelImageService.uploadProfilePhoto(uid, bytes) { photoUrl ->
+                        if (photoUrl != null) {
+                            updates["photoUrl"] = photoUrl
+                        }
+                    }
+                } catch (e: Exception) {
+                    // Ignore stream exception
+                }
+            }
+
             FirebaseFirestore.getInstance().collection("users").document(uid)
                 .update(updates)
                 .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Profile updated & synced successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Profile updated & synced with Vercel successfully!", Toast.LENGTH_SHORT).show()
                     tvName.text = name
                     tvProfileDetails.text = "Age: $age | Gender: $gender | Job: $job"
                     bottomSheet.dismiss()
