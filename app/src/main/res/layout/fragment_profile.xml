@@ -88,6 +88,15 @@
                             android:text="Show profile details"
                             android:textColor="@color/text_gray"
                             android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvProfileDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Age: -- | Gender: -- | Job: --"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <ImageView
